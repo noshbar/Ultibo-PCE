@@ -30,24 +30,13 @@
 
 #include <libini/libini.h>
 
-#include <SDL.h>
-
-
-typedef struct {
-	SDL_Scancode sdlkey;
-	pce_key_t    pcekey;
-} sdl2_keymap_t;
-
+#include "pal.h"
 
 /*!***************************************************************************
  * @short The SDL2 terminal structure
  *****************************************************************************/
 typedef struct {
 	terminal_t    trm;
-
-	SDL_Window    *window;
-	SDL_Renderer  *render;
-	SDL_Texture   *texture;
 
 	unsigned      txt_w;
 	unsigned      txt_h;
@@ -64,9 +53,6 @@ typedef struct {
 	char          autosize;
 	char          grave_down;
 	char          ignore_keys;
-
-	unsigned      keymap_cnt;
-	sdl2_keymap_t *keymap;
 } sdl2_t;
 
 

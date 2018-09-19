@@ -41,4 +41,4 @@ $(rel)/pce-img.o: $(rel)/pce-img.c
 
 $(rel)/pce-img$(EXEEXT): $(PCEIMG_OBJ_EXT) $(PCEIMG_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(LDFLAGS_DEFAULT) -o $@ $(PCEIMG_OBJ) $(PCEIMG_OBJ_EXT)
+	$(QR)arm-none-eabi-ar rcs libpciimg.a $(PCEIMG_OBJ) $(PCEIMG_OBJ_EXT)

@@ -30,10 +30,6 @@
 
 #include <signal.h>
 
-#ifdef PCE_ENABLE_SDL
-#include <SDL.h>
-#endif
-
 #include <lib/console.h>
 #include <lib/getopt.h>
 #include <lib/log.h>
@@ -41,6 +37,7 @@
 #include <lib/path.h>
 #include <lib/sysdep.h>
 
+#include "pal.h"
 
 const char           *par_terminal = NULL;
 const char           *par_video = NULL;
@@ -230,16 +227,14 @@ int pce_load_config (ini_sct_t *ini, const char *fname)
 	return (0);
 }
 
-int main (int argc, char *argv[])
+int IBMPC_LOOP(const char *cfg, const char *boot, const char *cpu, const char *speed, const char *video)
 {
 	int       r;
 	char      **optarg;
-	int       run, nomon;
-	char      *cfg;
+	int       run = 1, nomon = 0;
 	ini_sct_t *sct;
 
-	cfg = NULL;
-	run = 0;
+	run = 1;
 	nomon = 0;
 
 	pce_log_init();
@@ -253,40 +248,23 @@ int main (int argc, char *argv[])
 
 	ini_str_init (&par_ini_str);
 
-	while (1) {
-		r = pce_getopt (argc, argv, &optarg, opts);
+	pce_path_set ("C:\\");
+	pce_log_add_fname ("C:\\pce_ibmpc.log", MSG_DEB);
 
-		if (r == GETOPT_DONE) {
-			break;
-		}
+	if (boot)
+	    ini_str_add (&par_ini_str, "system.boot = ", boot, "\n");
 
-		if (r < 0) {
-			return (1);
-		}
+	if (cpu)
+		ini_str_add (&par_ini_str, "cpu.model = \"", cpu, "\"\n");
 
-		switch (r) {
-		case '?':
-			print_help();
-			return (0);
+	if (speed)
+		ini_str_add (&par_ini_str, "cpu.speed = ", speed, "\n");
 
-		case 'V':
-			print_version();
-			return (0);
+	if (video)
+		par_video = strdup(video);
 
-		case 'b':
-			ini_str_add (&par_ini_str, "system.boot = ", optarg[0], "\n");
-			break;
-
-		case 'c':
-			cfg = optarg[0];
-			break;
-
-		case 'd':
-			pce_path_set (optarg[0]);
-			break;
-
-		case 'g':
-			par_video = optarg[0];
+		/*case 'g':
+			
 			break;
 
 		case 'i':
@@ -303,56 +281,14 @@ int main (int argc, char *argv[])
 			ini_str_add (&par_ini_str, optarg[0], "\n", NULL);
 			break;
 
-		case 'l':
-			pce_log_add_fname (optarg[0], MSG_DEB);
-			break;
-
-		case 'p':
-			ini_str_add (&par_ini_str, "cpu.model = \"",
-				optarg[0], "\"\n"
-			);
-			break;
-
-		case 'q':
-			pce_log_set_level (stderr, MSG_ERR);
-			break;
-
-		case 'r':
-			run = 1;
-			break;
-
-		case 'R':
-			nomon = 1;
-			break;
-
 		case 't':
 			par_terminal = optarg[0];
-			break;
-
-		case 's':
-			ini_str_add (&par_ini_str, "cpu.speed = ",
-				optarg[0], "\n"
-			);
-			break;
-
-		case 'v':
-			pce_log_set_level (stderr, MSG_DEB);
-			break;
-
-		case 0:
-			fprintf (stderr, "%s: unknown option (%s)\n",
-				argv[0], optarg[0]
-			);
-			return (1);
-
-		default:
-			return (1);
-		}
-	}
+			break;*/
 
 	pc_log_banner();
 
 	if (pce_load_config (par_cfg, cfg)) {
+		pce_log_done();
 		return (1);
 	}
 
@@ -363,14 +299,13 @@ int main (int argc, char *argv[])
 	}
 
 	if (ini_str_eval (&par_ini_str, sct, 1)) {
+		pce_log_done();
 		return (1);
 	}
 
 	atexit (pc_atexit);
 
-#ifdef PCE_ENABLE_SDL
-	SDL_Init (0);
-#endif
+	//Pal_init
 
 	pce_path_ini (sct);
 
@@ -415,13 +350,11 @@ int main (int argc, char *argv[])
 
 	pc_del (par_pc);
 
-#ifdef PCE_ENABLE_SDL
-	SDL_Quit();
-#endif
+	//Pal_Quit
 
 	mon_free (&par_mon);
 	pce_console_done();
 	pce_log_done();
 
-	return (0);
+	return 0;
 }

@@ -29,12 +29,7 @@
 #include <drivers/sound/sound.h>
 #include <drivers/sound/sound-sdl.h>
 
-#include <SDL.h>
-
-#ifndef DEBUG_SND_SDL
-#define DEBUG_SND_SDL 0
-#endif
-
+typedef unsigned char Uint8;
 
 static
 sound_sdl_buf_t *snd_sdl_buf_new (sound_sdl_t *drv, unsigned size)
@@ -110,7 +105,7 @@ void snd_sdl_close (sound_drv_t *sdrv)
 	drv = sdrv->ext;
 
 	if (drv->is_open) {
-		SDL_CloseAudio();
+		//SDL_CloseAudio();
 	}
 
 	snd_sdl_buf_free_list (drv->head);
@@ -134,14 +129,11 @@ int snd_sdl_write (sound_drv_t *sdrv, const uint16_t *buf, unsigned cnt)
 	scnt = (unsigned long) sdrv->channels * (unsigned long) cnt;
 	bcnt = 2 * scnt;
 
-	SDL_LockAudio();
+	//SDL_LockAudio();
 	bbuf = snd_sdl_buf_new (drv, bcnt);
-	SDL_UnlockAudio();
+	//SDL_UnlockAudio();
 
 	if (bbuf == NULL) {
-#if DEBUG_SND_SDL >= 1
-		fprintf (stderr, "snd-sdl: buffer overrun\n");
-#endif
 		return (1);
 	}
 
@@ -152,7 +144,7 @@ int snd_sdl_write (sound_drv_t *sdrv, const uint16_t *buf, unsigned cnt)
 	bbuf->idx = 0;
 	bbuf->cnt = bcnt;
 
-	SDL_LockAudio();
+	//SDL_LockAudio();
 
 	if (drv->tail == NULL) {
 		drv->head = bbuf;
@@ -163,10 +155,10 @@ int snd_sdl_write (sound_drv_t *sdrv, const uint16_t *buf, unsigned cnt)
 
 	drv->tail = bbuf;
 
-	SDL_UnlockAudio();
+	//SDL_UnlockAudio();
 
 	if (drv->is_paused) {
-		SDL_PauseAudio (0);
+		//SDL_PauseAudio (0);
 		drv->is_paused = 0;
 	}
 
@@ -183,7 +175,7 @@ void snd_sdl_callback (void *user, Uint8 *buf, int cnt)
 	drv = user;
 
 	if (drv->head == NULL) {
-		SDL_PauseAudio (1);
+		//SDL_PauseAudio (1);
 		drv->is_paused = 1;
 		return;
 	}
@@ -228,11 +220,11 @@ static
 int snd_sdl_set_params (sound_drv_t *sdrv, unsigned chn, unsigned long srate, int sign)
 {
 	sound_sdl_t   *drv;
-	SDL_AudioSpec req;
+	//SDL_AudioSpec req;
 
 	drv = sdrv->ext;
 
-	if (SDL_WasInit (SDL_INIT_AUDIO) == 0) {
+	/*if (SDL_WasInit (SDL_INIT_AUDIO) == 0) {
 		if (SDL_InitSubSystem (SDL_INIT_AUDIO) < 0) {
 			fprintf (stderr,
 				"snd-sdl: error initializing audio subsystem (%s)\n",
@@ -240,14 +232,14 @@ int snd_sdl_set_params (sound_drv_t *sdrv, unsigned chn, unsigned long srate, in
 			);
 			return (1);
 		}
-	}
+	}*/
 
 	if (drv->is_open) {
-		SDL_CloseAudio();
+		//SDL_CloseAudio();
 		drv->is_open = 0;
 	}
 
-	req.freq = srate;
+	/*req.freq = srate;
 	req.format = AUDIO_S16LSB;
 	req.channels = chn;
 	req.samples = 1024;
@@ -261,7 +253,7 @@ int snd_sdl_set_params (sound_drv_t *sdrv, unsigned chn, unsigned long srate, in
 		return (1);
 	}
 
-	SDL_PauseAudio (1);
+	SDL_PauseAudio (1);*/
 
 	drv->is_open = 1;
 	drv->is_paused = 1;

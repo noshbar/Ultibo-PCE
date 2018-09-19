@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if HAVE_SYS_IOCTL_H
 
 #include <config.h>
 
@@ -135,3 +136,4 @@ int tun_check_packet (int fd)
 	return (1);
 }
 
+#endif

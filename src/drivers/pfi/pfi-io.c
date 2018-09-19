@@ -28,7 +28,7 @@
 #include "pfi-pfi.h"
 #include "pfi-kryo.h"
 #include "pfi-scp.h"
-
+#include "pal.h"
 
 unsigned pfi_get_uint16_be (const void *buf, unsigned idx)
 {

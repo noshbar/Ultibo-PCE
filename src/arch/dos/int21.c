@@ -25,6 +25,7 @@
 #include "dosmem.h"
 #include "int21.h"
 #include "path.h"
+#include "pal.h"
 
 #include <ctype.h>
 #include <stdio.h>

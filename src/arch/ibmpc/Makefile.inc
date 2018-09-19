@@ -126,7 +126,8 @@ $(rel)/xms.o:		$(rel)/xms.c
 
 $(rel)/pce-ibmpc$(EXEEXT): $(PCE_IBMPC_OBJ_EXT) $(PCE_IBMPC_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(PCE_IBMPC_LDFLAGS) -o $@ $(PCE_IBMPC_OBJ) $(PCE_IBMPC_OBJ_EXT) $(PCE_IBMPC_LIBS) -lm
+	$(QR)arm-none-eabi-ar rcs libibmpc.a $(PCE_IBMPC_OBJ) $(PCE_IBMPC_OBJ_EXT) $(PCE_IBMPC_LIBS)
+#	$(QR)$(LD) $(PCE_IBMPC_LDFLAGS) -o $@ $(PCE_IBMPC_OBJ) $(PCE_IBMPC_OBJ_EXT) $(PCE_IBMPC_LIBS) -lm
 
 $(rel)/pce-ibmpc.cfg: $(rel)/pce-ibmpc.cfg.in
 	$(QP)echo "  SED    $@"

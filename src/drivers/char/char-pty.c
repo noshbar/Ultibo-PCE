@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if PCE_ENABLE_CHAR_PTY
 
 #include <config.h>
 
@@ -238,3 +239,5 @@ char_drv_t *chr_pty_open (const char *name)
 
 	return (&drv->cdrv);
 }
+
+#endif

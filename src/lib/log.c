@@ -37,7 +37,6 @@ typedef struct {
 static unsigned  par_log_cnt = 0;
 static pce_log_t par_log[PCE_LOG_MAX];
 
-
 void pce_log_init (void)
 {
 	par_log_cnt = 0;

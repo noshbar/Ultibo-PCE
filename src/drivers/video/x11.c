@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if PCE_ENABLE_X11
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1030,3 +1031,5 @@ terminal_t *xt_new (ini_sct_t *ini)
 
 	return (&xt->trm);
 }
+
+#endif

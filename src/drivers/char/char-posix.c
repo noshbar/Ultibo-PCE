@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if PCE_ENABLE_CHAR_POSIX
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -260,3 +261,5 @@ char_drv_t *chr_posix_open (const char *name)
 
 	return (&drv->cdrv);
 }
+
+#endif

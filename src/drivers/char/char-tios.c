@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if PCE_ENABLE_CHAR_TIOS
 
 #include <stdlib.h>
 #include <limits.h>
@@ -418,3 +419,5 @@ char_drv_t *chr_tios_open (const char *name)
 
 	return (&drv->cdrv);
 }
+
+#endif

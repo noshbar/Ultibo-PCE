@@ -61,4 +61,5 @@ $(rel)/path.o:   $(rel)/path.c
 
 $(rel)/pce-dos$(EXEEXT): $(PCE_DOS_OBJ_EXT) $(PCE_DOS_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(PCE_DOS_LDFLAGS) -o $@ $(PCE_DOS_OBJ) $(PCE_DOS_OBJ_EXT) $(PCE_DOS_LIBS) -lm
+	$(QR)arm-none-eabi-ar rcs libdos.a $(PCE_DOS_OBJ) $(PCE_DOS_OBJ_EXT) $(PCE_DOS_LIBS)
+#	$(QR)$(LD) $(PCE_DOS_LDFLAGS) -o $@ $(PCE_DOS_OBJ) $(PCE_DOS_OBJ_EXT) $(PCE_DOS_LIBS) -lm

@@ -34,6 +34,7 @@
 #include <lib/msg.h>
 #include <libini/libini.h>
 
+#include "pal.h"
 
 #define CGA_IFREQ  1193182
 #define CGA_PFREQ  14318184

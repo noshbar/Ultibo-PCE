@@ -61,7 +61,7 @@ $(rel)/sim6502.o:	$(rel)/sim6502.c
 
 $(rel)/pce-sim6502$(EXEEXT): $(PCE_SIM6502_OBJ_EXT) $(PCE_SIM6502_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(PCE_SIM6502_LDFLAGS) -o $@ $(PCE_SIM6502_OBJ) $(PCE_SIM6502_OBJ_EXT) $(PCE_SIM6502_LIBS) -lm
+	$(QR)arm-none-eabi-ar rcs libsim6502.a $(PCE_SIM6502_OBJ) $(PCE_SIM6502_OBJ_EXT) $(PCE_SIM6502_LIBS)
 
 $(rel)/pce-sim6502.cfg: $(rel)/pce-sim6502.cfg.in
 	$(QP)echo "  SED    $@"

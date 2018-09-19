@@ -40,4 +40,4 @@ $(rel)/main.o:       $(rel)/main.c
 
 $(rel)/aym$(EXEEXT): $(AYM_OBJ_EXT) $(AYM_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(LDFLAGS_DEFAULT) -o $@ $(AYM_OBJ) $(AYM_OBJ_EXT) $(AYM_LIBS) -lm
+	$(QR)arm-none-eabi-ar rcs libaym.a $(AYM_OBJ) $(AYM_OBJ_EXT) $(AYM_LIBS)

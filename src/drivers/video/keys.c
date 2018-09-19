@@ -25,6 +25,7 @@
 
 #include <drivers/video/keys.h>
 
+#include "pal.h"
 
 typedef struct {
 	pce_key_t  key;

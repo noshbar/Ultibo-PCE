@@ -32,6 +32,7 @@
 #include <lib/load.h>
 #include <lib/path.h>
 
+#include "pal.h"
 
 int pce_load_blk_bin (mem_blk_t *blk, const char *fname)
 {

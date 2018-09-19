@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if PCE_ENABLE_CHAR_TCP
 
 #include <stdlib.h>
 #include <string.h>
@@ -698,3 +699,5 @@ char_drv_t *chr_tcp_open (const char *name)
 
 	return (&drv->cdrv);
 }
+
+#endif

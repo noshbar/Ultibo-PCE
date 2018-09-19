@@ -31,6 +31,7 @@
 #include <lib/ihex.h>
 #include <lib/srec.h>
 
+#include "pal.h"
 
 #define MON_FORMAT_NONE   0
 #define MON_FORMAT_BINARY 1

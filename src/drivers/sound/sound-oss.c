@@ -19,6 +19,7 @@
  * Public License for more details.                                          *
  *****************************************************************************/
 
+#if PCE_ENABLE_SOUND_OSS
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -240,3 +241,5 @@ sound_drv_t *snd_oss_open (const char *name)
 
 	return (&drv->sdrv);
 }
+
+#endif

@@ -26,7 +26,7 @@
 
 #include "console.h"
 #include "cmd.h"
-
+#include "pal.h"
 
 typedef struct {
 	char          *name;

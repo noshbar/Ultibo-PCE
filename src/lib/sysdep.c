@@ -35,16 +35,17 @@
 #include <sys/time.h>
 #endif
 
-#ifdef HAVE_SYS_POLL_H
+#if HAVE_SYS_POLL_H
 #include <sys/poll.h>
 #endif
 
-#ifdef HAVE_TERMIOS_H
+#if HAVE_TERMIOS_H
 #include <termios.h>
 #endif
 
 #include "sysdep.h"
 
+#include "pal.h"
 
 int pce_usleep (unsigned long usec)
 {

@@ -55,4 +55,4 @@ $(rel)/main.o:     $(rel)/main.c
 
 $(rel)/pri$(EXEEXT): $(PRI_OBJ_EXT) $(PRI_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(LDFLAGS_DEFAULT) -o $@ $(PRI_OBJ) $(PRI_OBJ_EXT)
+	$(QR)arm-none-eabi-ar rcs libpri.a $(PRI_OBJ) $(PRI_OBJ_EXT)

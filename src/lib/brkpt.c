@@ -26,6 +26,7 @@
 
 #include "brkpt.h"
 #include "cmd.h"
+#include "pal.h"
 
 
 breakpoint_t *bp_new (unsigned type)

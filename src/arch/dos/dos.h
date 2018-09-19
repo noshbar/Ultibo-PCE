@@ -28,7 +28,7 @@
 
 #include <cpu/e8086/e8086.h>
 
-#include <dirent.h>
+#include "pal.h"
 
 
 #define DOS_FILES_MAX  32

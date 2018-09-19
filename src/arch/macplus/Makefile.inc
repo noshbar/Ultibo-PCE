@@ -133,7 +133,7 @@ $(rel)/video.o:		$(rel)/video.c
 
 $(rel)/pce-macplus$(EXEEXT): $(PCE_MACPLUS_OBJ_EXT) $(PCE_MACPLUS_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(PCE_MACPLUS_LDFLAGS) -o $@ $(PCE_MACPLUS_OBJ) $(PCE_MACPLUS_OBJ_EXT) $(PCE_MACPLUS_LIBS) -lm
+	$(QR)arm-none-eabi-ar rcs libmacplus.a $(PCE_MACPLUS_OBJ) $(PCE_MACPLUS_OBJ_EXT) $(PCE_MACPLUS_LIBS)
 
 $(rel)/pce-mac-plus.cfg: $(rel)/pce-macplus.cfg.in
 	$(QP)echo "  SED    $@"

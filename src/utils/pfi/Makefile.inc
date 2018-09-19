@@ -43,4 +43,4 @@ $(rel)/main.o:       $(rel)/main.c
 
 $(rel)/pfi$(EXEEXT): $(PFI_UTIL_OBJ_EXT) $(PFI_UTIL_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(LDFLAGS_DEFAULT) -o $@ $(PFI_UTIL_OBJ) $(PFI_UTIL_OBJ_EXT) -lm
+	$(QR)arm-none-eabi-ar rcs libpfi.a $(PFI_UTIL_OBJ) $(PFI_UTIL_OBJ_EXT)

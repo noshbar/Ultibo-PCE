@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "pal.h"
 #include "psi.h"
 #include "psi-img.h"
 #include "psi-img-ana.h"

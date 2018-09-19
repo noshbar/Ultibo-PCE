@@ -47,4 +47,4 @@ $(rel)/reorder.o: $(rel)/reorder.c
 
 $(rel)/psi$(EXEEXT): $(PSI_OBJ_EXT) $(PSI_OBJ)
 	$(QP)echo "  LD     $@"
-	$(QR)$(LD) $(LDFLAGS_DEFAULT) -o $@ $(PSI_OBJ) $(PSI_OBJ_EXT)
+	$(QR)arm-none-eabi-ar rcs libpsi.a $(PSI_OBJ) $(PSI_OBJ_EXT)
