@@ -1,0 +1,8 @@
+/backup/
+/lib/
+*.lps
+*.elf
+*.bin
+*.img
+*.ppu
+*.res
